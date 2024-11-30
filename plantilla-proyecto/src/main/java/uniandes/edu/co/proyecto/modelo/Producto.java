@@ -23,14 +23,14 @@ public class Producto {
     private String unidad_medida;
     private String codigo_barras;
     private Date fecha_expiracion;
-    private Categoria id_categoria;
+    private int id_categoria;
 
     public Producto() {
     }
 
     public Producto(int id, String nombre, int costo_bodega, int precio_unidad, String presentacion,
             int cantidad_presentacion, double volumen, double peso_empaque, String unidad_medida, String codigo_barras,
-            Date fecha_expiracion, Categoria id_categoria) {
+            Date fecha_expiracion, int id_categoria) {
         this.id = id;
         this.nombre = nombre;
         this.costo_bodega = costo_bodega;
@@ -133,11 +133,11 @@ public class Producto {
         this.fecha_expiracion = fecha_expiracion;
     }
 
-    public Categoria getCodigo_categoria() {
+    public int getCodigo_categoria() {
         return id_categoria;
     }
 
-    public void setCodigo_categoria(Categoria codigo_categoria) {
+    public void setCodigo_categoria(int codigo_categoria) {
         this.id_categoria = codigo_categoria;
     }
 
