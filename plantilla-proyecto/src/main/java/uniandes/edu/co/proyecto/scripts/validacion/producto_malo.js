@@ -1,4 +1,3 @@
-// Crear la colección "producto" con esquema de validación
 db.createCollection("producto", {
   validator: {
     $jsonSchema: {
@@ -15,7 +14,7 @@ db.createCollection("producto", {
         "unidad_medida",
         "codigo_barras",
         "fecha_expiracion",
-        "codigo_categoria",
+        "categoria",
       ],
       properties: {
         id: {
@@ -29,7 +28,7 @@ db.createCollection("producto", {
         },
         costo_bodega: {
           bsonType: "int",
-          description: "Costo del producto en bodega",
+          description: "Costo en la bodega",
         },
         precio_unidad: {
           bsonType: "int",
@@ -37,15 +36,15 @@ db.createCollection("producto", {
         },
         presentacion: {
           bsonType: "string",
-          description: "Presentación del producto (ej: paquete de 6 unidades)",
+          description: "Formato o presentación del producto",
         },
         cantidad_presentacion: {
-          bsonType: "int",
-          description: "Cantidad en la presentación (entero)",
+          bsonType: "double",
+          description: "Cantidad incluida en la presentación (peso o volumen)",
         },
         volumen: {
           bsonType: "double",
-          description: "Volumen del producto en cm³",
+          description: "Volumen del empaque en cm3",
         },
         peso_empaque: {
           bsonType: "double",
@@ -64,22 +63,36 @@ db.createCollection("producto", {
           bsonType: "date",
           description: "Fecha de expiración del producto en formato ISODate",
         },
-        codigo_categoria: {
+        categoria: {
           bsonType: "object",
-          required: ["id", "codigo"],
+          required: [
+            "codigo",
+            "nombre",
+            "descripcion",
+            "caracteristica_almacenamiento",
+          ],
           properties: {
-            id: {
-              bsonType: "int",
-              description: "Identificador único de la categoría asociada",
-            },
             codigo: {
               bsonType: "int",
-              description: "Código de la categoría asociada",
+              description: "Código único de la categoría",
+            },
+            nombre: {
+              bsonType: "string",
+              description: "Nombre de la categoría",
+            },
+            descripcion: {
+              bsonType: "string",
+              description: "Descripción de la categoría",
+            },
+            caracteristica_almacenamiento: {
+              bsonType: "string",
+              description: "Condiciones necesarias para almacenar la categoría",
             },
           },
-          description: "Referencia a la categoría del producto",
+          description: "Información de la categoría asociada al producto",
         },
       },
     },
   },
+  validationAction: "warn", // Puede ser "error" para que se rechacen los documentos inválidos
 });
