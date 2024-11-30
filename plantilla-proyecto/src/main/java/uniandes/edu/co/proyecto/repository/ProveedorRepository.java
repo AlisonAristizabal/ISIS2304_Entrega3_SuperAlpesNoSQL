@@ -18,7 +18,7 @@ public interface ProveedorRepository extends MongoRepository<Proveedor,Integer>{
     @Query("{_id: ?0}")
     List<Proveedor> buscarPorId(int id);
 
-    // Crear una nueva Proveedor
+    // Crear un nuevo Proveedor
     @Query("{ $insert: { _id: ?0, nit: ?1, direccion: ?2, nombre_contacto: ?3, telefono_contacto: ?4, id_productos: ?5} }")
     void insertarProveedor(int id, long nit, String direccion, String nombre_contacto, String telefono_contacto, List<Integer> id_productos);
 

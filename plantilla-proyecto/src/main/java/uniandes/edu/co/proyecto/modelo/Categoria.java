@@ -1,10 +1,15 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.ToString;
 
+@Document(collection = "categoria")
 @ToString
 public class Categoria {
-    
+
+    @Id
     private int codigo;
     private String nombre;
     private String descripcion;
