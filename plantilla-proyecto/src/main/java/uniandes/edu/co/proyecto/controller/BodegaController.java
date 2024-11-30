@@ -34,7 +34,7 @@ public class BodegaController {
         }
     }
 
-    // Obtener todos las sucursales
+    // Obtener todos las bodegas
     @GetMapping("")
     public ResponseEntity<List<Bodega>> obtenerTodasLasBodegas() {
         try {
@@ -45,9 +45,9 @@ public class BodegaController {
         }
     }
 
-    // Obtener un bar por ID
+    // Obtener una bodega por ID
     @GetMapping("/{id}")
-    public ResponseEntity<List<Bodega>> obtenerBarPorId(@PathVariable("id") int id) {
+    public ResponseEntity<List<Bodega>> obtenerBodegaPorId(@PathVariable("id") int id) {
         try {
             List<Bodega> bodegas = bodegaRepository.buscarPorId(id);
             if (bodegas != null && !bodegas.isEmpty()) {

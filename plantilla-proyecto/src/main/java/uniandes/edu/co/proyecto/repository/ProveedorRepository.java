@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 
-import uniandes.edu.co.proyecto.modelo.Ciudad;
 import uniandes.edu.co.proyecto.modelo.Proveedor;
 
 public interface ProveedorRepository extends MongoRepository<Proveedor,Integer>{
@@ -20,11 +19,11 @@ public interface ProveedorRepository extends MongoRepository<Proveedor,Integer>{
     List<Proveedor> buscarPorId(int id);
 
     // Crear una nueva Proveedor
-    @Query("{ $insert: { _id: ?0, nombre: ?1, telefono: ?2, direccion: ?3, ciudad: ?4} }")
-    void insertarProveedor(int id, String nombre, String telefono, String direccion, Ciudad ciudad);
+    @Query("{ $insert: { _id: ?0, nit: ?1, direccion: ?2, nombre_contacto: ?3, telefono_contacto: ?4, id_productos: ?5} }")
+    void insertarProveedor(int id, long nit, String direccion, String nombre_contacto, String telefono_contacto, List<Integer> id_productos);
 
     // Actualizar un bar por su ID
     @Query("{ _id: ?0 }")
-    @Update("{ $set: { nombre: ?1, ciudad: ?2, presupuesto: ?3, cant_sedes: ?4, oferta_bebidas: ?5 }}")
-    void actualizarProveedor(int id, String nombre, String ciudad, String presupuesto, int cant_sedes, List<Bebida> oferta_bebidas);
+    @Update("{ $set: { nit: ?1, direccion: ?2, nombre_contacto: ?3, telefono_contacto: ?4, id_productos: ?5 }}")
+    void actualizarProveedor(int id, long nit, String direccion, String nombre_contacto, String telefono_contacto, List<Integer> id_productos);
 }

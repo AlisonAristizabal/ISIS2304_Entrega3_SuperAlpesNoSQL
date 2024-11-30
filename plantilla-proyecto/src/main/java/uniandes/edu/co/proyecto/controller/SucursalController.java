@@ -44,9 +44,9 @@ public class SucursalController {
         }
     }
 
-    // Obtener un bar por ID
+    // Obtener una sucursal por ID
     @GetMapping("/{id}")
-    public ResponseEntity<List<Sucursal>> obtenerBarPorId(@PathVariable("id") int id) {
+    public ResponseEntity<List<Sucursal>> obtenerSucursalPorId(@PathVariable("id") int id) {
         try {
             List<Sucursal> sucursales = sucursalRepository.buscarPorId(id);
             if (sucursales != null && !sucursales.isEmpty()) {
