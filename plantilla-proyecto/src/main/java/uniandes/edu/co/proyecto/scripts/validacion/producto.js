@@ -1,4 +1,3 @@
-// Crear la colección "producto" con esquema de validación
 db.createCollection("producto", {
   validator: {
     $jsonSchema: {
@@ -21,11 +20,11 @@ db.createCollection("producto", {
         id: {
           bsonType: "int",
           description:
-            "Debe ser un número entero único que identifica al producto",
+            "Debe ser un número entero único que identifica el producto",
         },
         nombre: {
           bsonType: "string",
-          description: "Nombre del producto",
+          description: "Nombre descriptivo del producto",
         },
         costo_bodega: {
           bsonType: "int",
@@ -37,49 +36,38 @@ db.createCollection("producto", {
         },
         presentacion: {
           bsonType: "string",
-          description: "Presentación del producto (ej: paquete de 6 unidades)",
+          description: "Descripción de la presentación del producto",
         },
         cantidad_presentacion: {
           bsonType: "int",
-          description: "Cantidad en la presentación (entero)",
+          description: "Cantidad contenida en cada presentación",
         },
         volumen: {
           bsonType: "double",
-          description: "Volumen del producto en cm³",
+          description: "Volumen del producto en unidades de medida",
         },
         peso_empaque: {
           bsonType: "double",
-          description: "Peso del empaque en gramos",
+          description: "Peso del empaque del producto",
         },
         unidad_medida: {
           bsonType: "string",
-          enum: ["gr", "ml"],
-          description: "Unidad de medida: gramos o mililitros",
+          description: "Unidad de medida para el volumen y peso",
         },
         codigo_barras: {
           bsonType: "string",
-          description: "Código de barras único del producto",
+          description: "Código de barras del producto",
         },
         fecha_expiracion: {
           bsonType: "date",
-          description: "Fecha de expiración del producto en formato ISODate",
+          description: "Fecha de expiración del producto",
         },
         codigo_categoria: {
-          bsonType: "object",
-          required: ["id", "codigo"],
-          properties: {
-            id: {
-              bsonType: "int",
-              description: "Identificador único de la categoría asociada",
-            },
-            codigo: {
-              bsonType: "int",
-              description: "Código de la categoría asociada",
-            },
-          },
-          description: "Referencia a la categoría del producto",
+          bsonType: "int",
+          description: "Identificador único de la categoría asociada",
         },
       },
     },
   },
+  validationAction: "warn", // Cambiar a "error" para bloquear documentos inválidos
 });

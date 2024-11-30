@@ -23,16 +23,14 @@ public class Producto {
     private String unidad_medida;
     private String codigo_barras;
     private Date fecha_expiracion;
-
-    @DBRef
-    private Categoria codigo_categoria;
+    private Categoria id_categoria;
 
     public Producto() {
     }
-    
+
     public Producto(int id, String nombre, int costo_bodega, int precio_unidad, String presentacion,
             int cantidad_presentacion, double volumen, double peso_empaque, String unidad_medida, String codigo_barras,
-            Date fecha_expiracion, Categoria codigo_categoria) {
+            Date fecha_expiracion, Categoria id_categoria) {
         this.id = id;
         this.nombre = nombre;
         this.costo_bodega = costo_bodega;
@@ -44,7 +42,7 @@ public class Producto {
         this.unidad_medida = unidad_medida;
         this.codigo_barras = codigo_barras;
         this.fecha_expiracion = fecha_expiracion;
-        this.codigo_categoria = codigo_categoria;
+        this.id_categoria = id_categoria;
     }
 
     public int getId() {
@@ -136,12 +134,11 @@ public class Producto {
     }
 
     public Categoria getCodigo_categoria() {
-        return codigo_categoria;
+        return id_categoria;
     }
 
     public void setCodigo_categoria(Categoria codigo_categoria) {
-        this.codigo_categoria = codigo_categoria;
+        this.id_categoria = codigo_categoria;
     }
 
-    
 }
