@@ -15,14 +15,14 @@ public class Bodega {
     private String nombre;
     private double tamanio;
     private int id_sucursal;
-    private List<ProductosEnBodega> productosEnBodega;
+    private List<ProductosEnBodega> productos_en_bodega;
 
     public Bodega(int id, String nombre, double tamanio, int id_sucursal, List<ProductosEnBodega> productosEnBodega) {
         this.id = id;
         this.nombre = nombre;
         this.tamanio = tamanio;
         this.id_sucursal = id_sucursal;
-        this.productosEnBodega = productosEnBodega;
+        this.productos_en_bodega = productosEnBodega;
     }
 
     public int getId() {
@@ -58,11 +58,11 @@ public class Bodega {
     }
 
     public List<ProductosEnBodega> getProductosEnBodega() {
-        return productosEnBodega;
+        return productos_en_bodega;
     }
 
     public void setProductosEnBodega(List<ProductosEnBodega> productosEnBodega) {
-        this.productosEnBodega = productosEnBodega;
+        this.productos_en_bodega = productosEnBodega;
     }
 
 }
