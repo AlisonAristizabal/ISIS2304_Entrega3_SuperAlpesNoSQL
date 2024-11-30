@@ -3,6 +3,7 @@ package uniandes.edu.co.proyecto.modelo;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.ToString;
@@ -22,14 +23,16 @@ public class Producto {
     private String unidad_medida;
     private String codigo_barras;
     private Date fecha_expiracion;
-    private int codigo_categoria;
+
+    @DBRef
+    private Categoria codigo_categoria;
 
     public Producto() {
     }
     
     public Producto(int id, String nombre, int costo_bodega, int precio_unidad, String presentacion,
             int cantidad_presentacion, double volumen, double peso_empaque, String unidad_medida, String codigo_barras,
-            Date fecha_expiracion, int codigo_categoria) {
+            Date fecha_expiracion, Categoria codigo_categoria) {
         this.id = id;
         this.nombre = nombre;
         this.costo_bodega = costo_bodega;
@@ -132,11 +135,11 @@ public class Producto {
         this.fecha_expiracion = fecha_expiracion;
     }
 
-    public int getCodigo_categoria() {
+    public Categoria getCodigo_categoria() {
         return codigo_categoria;
     }
 
-    public void setCodigo_categoria(int codigo_categoria) {
+    public void setCodigo_categoria(Categoria codigo_categoria) {
         this.codigo_categoria = codigo_categoria;
     }
 
