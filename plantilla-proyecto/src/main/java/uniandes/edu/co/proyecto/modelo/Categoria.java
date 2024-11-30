@@ -8,9 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.ToString;
 
 @Document(collection = "categoria")
-@CompoundIndexes({
-    @CompoundIndex(name = "codigo_unique", def = "{'codigo': 1}", unique = true)
-})
 @ToString
 public class Categoria {
 
@@ -20,7 +17,7 @@ public class Categoria {
     private String nombre;
     private String descripcion;
     private String caracteristica_almacenamiento;
-    
+
     public Categoria() {
     }
 
@@ -31,7 +28,6 @@ public class Categoria {
         this.descripcion = descripcion;
         this.caracteristica_almacenamiento = caracteristica_almacenamiento;
     }
-
 
     public int getCodigo() {
         return codigo;
@@ -72,5 +68,5 @@ public class Categoria {
     public void setId(int id) {
         this.id = id;
     }
-    
+
 }

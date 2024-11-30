@@ -1,4 +1,3 @@
-// Crear la colección "categoria" con esquema de validación
 db.createCollection("categoria", {
   validator: {
     $jsonSchema: {
@@ -18,12 +17,11 @@ db.createCollection("categoria", {
         },
         codigo: {
           bsonType: "int",
-          description:
-            "Debe ser un número entero único que identifica la categoría",
+          description: "Código único para la categoría",
         },
         nombre: {
           bsonType: "string",
-          description: "Nombre de la categoría",
+          description: "Nombre descriptivo de la categoría",
         },
         descripcion: {
           bsonType: "string",
@@ -31,12 +29,11 @@ db.createCollection("categoria", {
         },
         caracteristica_almacenamiento: {
           bsonType: "string",
-          description: "Condiciones necesarias para almacenar esta categoría",
+          description:
+            "Características relacionadas con el almacenamiento de la categoría",
         },
       },
     },
   },
+  validationAction: "warn", // Cambiar a "error" para bloquear documentos inválidos
 });
-
-// Crear un índice único en el campo "codigo"
-db.categoria.createIndex({ codigo: 1 }, { unique: true });
