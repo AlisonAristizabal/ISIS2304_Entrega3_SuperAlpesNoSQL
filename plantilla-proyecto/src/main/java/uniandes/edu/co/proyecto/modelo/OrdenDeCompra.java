@@ -12,13 +12,14 @@ import lombok.ToString;
 @ToString
 public class OrdenDeCompra {
     @Id
+    private String _id;
     private int id;
     private Date fecha_esperada_entrega;
     private String estado;
     private int id_sucursal;
     private int id_proveedor;
     private List<ProductoOrdenCompra> productos_orden_compra;
-    
+
     public OrdenDeCompra() {
     }
 
@@ -80,5 +81,4 @@ public class OrdenDeCompra {
         this.productos_orden_compra = productosOrdenCompra;
     }
 
-    
 }

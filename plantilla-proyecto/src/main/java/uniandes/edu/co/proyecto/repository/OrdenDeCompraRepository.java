@@ -11,7 +11,7 @@ public interface OrdenDeCompraRepository extends MongoRepository<OrdenDeCompra, 
 
     // Consultar todas las ordenes de compra
     @Query(value = "{}")
-    List<OrdenDeCompra> buscarTodassLasOrdenesDeCompra();
+    List<OrdenDeCompra> buscarTodasLasOrdenesDeCompra();
 
     // Consultar orden de compra por id
     @Query("{_id: ?0}")
