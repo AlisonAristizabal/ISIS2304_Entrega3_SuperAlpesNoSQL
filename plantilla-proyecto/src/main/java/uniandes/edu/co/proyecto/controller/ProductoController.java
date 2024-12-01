@@ -28,7 +28,8 @@ public class ProductoController {
             productoRepository.insertarProducto(producto);
             return ResponseEntity.status(HttpStatus.CREATED).body("Producto creado exitosamente");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el producto: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al crear el producto: " + e.getMessage());
         }
     }
 
@@ -43,46 +44,47 @@ public class ProductoController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado con ID: " + id);
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al buscar el producto: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al buscar el producto: " + e.getMessage());
         }
     }
 
     // Consultar un producto por su nombre (incluyendo la categoría)
     @GetMapping("/buscarPorNombre/{nombre}")
-public ResponseEntity<?> obtenerProductoConCategoriaPorNombre(@PathVariable String nombre) {
-    try {
-        Producto producto = productoRepository.findProductoConCategoriaByNombre(nombre);
-        if (producto != null) {
-            return ResponseEntity.ok(producto);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado con nombre: " + nombre);
+    public ResponseEntity<?> obtenerProductoConCategoriaPorNombre(@PathVariable String nombre) {
+        try {
+            Producto producto = productoRepository.findProductoConCategoriaByNombre(nombre);
+            if (producto != null) {
+                return ResponseEntity.ok(producto);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado con nombre: " + nombre);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al buscar el producto: " + e.getMessage());
         }
-    } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al buscar el producto: " + e.getMessage());
     }
-}
-
 
     // Actualizar campos específicos de un producto
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizarCamposProducto(
-            @PathVariable int id,
+            @PathVariable String _id,
             @RequestBody Producto productoActualizado) {
         try {
-            Optional<Producto> productoExistente = productoRepository.findById(id);
+            Optional<Producto> productoExistente = productoRepository.findById(_id);
             if (productoExistente.isPresent()) {
                 productoRepository.actualizarCamposProducto(
-                        id,
+                        _id,
                         productoActualizado.getNombre(),
                         productoActualizado.getCosto_bodega(),
-                        productoActualizado.getPrecio_unidad()
-                );
+                        productoActualizado.getPrecio_unidad());
                 return ResponseEntity.ok("Producto actualizado exitosamente");
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado con ID: " + id);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado con ID: " + _id);
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el producto: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al actualizar el producto: " + e.getMessage());
         }
     }
 }
