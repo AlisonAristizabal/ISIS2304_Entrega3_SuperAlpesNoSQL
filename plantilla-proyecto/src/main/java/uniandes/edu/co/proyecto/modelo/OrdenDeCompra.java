@@ -3,6 +3,7 @@ package uniandes.edu.co.proyecto.modelo;
 import java.util.Date;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,12 +16,12 @@ public class OrdenDeCompra {
     private String _id;
     private Date fecha_esperada_entrega;
     private String estado;
-    private String id_sucursal;
-    private String id_proveedor;
+    private ObjectId id_sucursal;
+    private ObjectId id_proveedor;
     private List<ProductoOrdenCompra> productos_orden_compra;
 
-    public OrdenDeCompra(String _id, Date fecha_esperada_entrega, String estado, String id_sucursal,
-            String id_proveedor, List<ProductoOrdenCompra> productos_orden_compra) {
+    public OrdenDeCompra(String _id, Date fecha_esperada_entrega, String estado, ObjectId id_sucursal,
+            ObjectId id_proveedor, List<ProductoOrdenCompra> productos_orden_compra) {
         this._id = _id;
         this.fecha_esperada_entrega = fecha_esperada_entrega;
         this.estado = estado;
@@ -56,19 +57,19 @@ public class OrdenDeCompra {
         this.estado = estado;
     }
 
-    public String getId_sucursal() {
+    public ObjectId getId_sucursal() {
         return id_sucursal;
     }
 
-    public void setId_sucursal(String id_sucursal) {
+    public void setId_sucursal(ObjectId id_sucursal) {
         this.id_sucursal = id_sucursal;
     }
 
-    public String getId_proveedor() {
+    public ObjectId getId_proveedor() {
         return id_proveedor;
     }
 
-    public void setId_proveedor(String id_proveedor) {
+    public void setId_proveedor(ObjectId id_proveedor) {
         this.id_proveedor = id_proveedor;
     }
 

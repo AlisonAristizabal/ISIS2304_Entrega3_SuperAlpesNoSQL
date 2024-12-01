@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.controller;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +28,15 @@ public class BodegaController {
     @PostMapping("/new/save")
     public ResponseEntity<String> crearBodega(@RequestBody Bodega bodega) {
         try {
+
+            System.out.println("Bodega recibida: " + bodega);
+            System.out.println("Productos en bodega: " + bodega.getProductosEnBodega());
+            // Guardar la bodega
             bodegaRepository.save(bodega);
             return new ResponseEntity<>("Bodega creada exitosamente", HttpStatus.CREATED);
-        } catch (Exception e) {;
-            return new ResponseEntity<>("Error al crear la bodega: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al crear la bodega: " + e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -47,7 +53,7 @@ public class BodegaController {
 
     // Obtener una bodega por ID
     @GetMapping("/{id}")
-    public ResponseEntity<List<Bodega>> obtenerBodegaPorId(@PathVariable("id") int id) {
+    public ResponseEntity<List<Bodega>> obtenerBodegaPorId(@PathVariable("id") String id) {
         try {
             List<Bodega> bodegas = bodegaRepository.buscarPorId(id);
             if (bodegas != null && !bodegas.isEmpty()) {
@@ -61,13 +67,14 @@ public class BodegaController {
     }
 
     // Eliminar una bodega por su ID
-    @DeleteMapping("/{id}/delete")
-    public ResponseEntity<String> eliminarBodega(@PathVariable("id") int id) {
+    @DeleteMapping("/{_id}/delete")
+    public ResponseEntity<String> eliminarBodega(@PathVariable("_id") String _id) {
         try {
-            bodegaRepository.eliminarBodegaPorId(id);
+            bodegaRepository.eliminarBodegaPorId(_id);
             return new ResponseEntity<>("Bodega eliminada exitosamente", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al eliminar la bodega: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al eliminar la bodega: " + e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

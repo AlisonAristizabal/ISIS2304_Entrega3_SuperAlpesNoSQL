@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.controller;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,11 +37,15 @@ public class OrdenDeCompraController {
     }
 
     // Obtener una orden de compra por id
-    @GetMapping("/{id}")
-    public ResponseEntity<List<OrdenDeCompra>> obtenerOrdenDeCompraPorId(@PathVariable("id") int id) {
+    @GetMapping("/{_id}")
+    public ResponseEntity<List<OrdenDeCompra>> obtenerOrdenDeCompraPorId(@PathVariable("_id") ObjectId id) {
         try {
             List<OrdenDeCompra> ordenes = ordenDeCompraRepository.buscarPorId(id);
             if (ordenes != null && !ordenes.isEmpty()) {
+                for (OrdenDeCompra orden : ordenes) {
+                    orden.setId_proveedor(new ObjectId(String.valueOf(orden.getId_proveedor())));
+                    orden.setId_sucursal(new ObjectId(String.valueOf(orden.getId_sucursal())));
+                }
                 return ResponseEntity.ok(ordenes);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);

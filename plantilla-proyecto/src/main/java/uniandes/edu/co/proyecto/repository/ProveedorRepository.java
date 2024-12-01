@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.repository;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
@@ -27,5 +28,5 @@ public interface ProveedorRepository extends MongoRepository<Proveedor, String> 
     @Query("{ _id: ?0 }")
     @Update("{ $set: { nit: ?1, direccion: ?2, nombre_contacto: ?3, telefono_contacto: ?4, id_productos: ?5 }}")
     void actualizarProveedor(String id, long nit, String direccion, String nombre_contacto, String telefono_contacto,
-            List<String> id_productos);
+            List<ObjectId> id_productos);
 }

@@ -62,8 +62,9 @@ public class ProveedorController {
     }
 
     // Actualizar un proveedor existente
-    @PostMapping("/{id}/edit/save")
-    public ResponseEntity<String> actualizarProveedor(@PathVariable("id") String id, @RequestBody Proveedor proveedor) {
+    @PostMapping("/{_id}/edit/save")
+    public ResponseEntity<String> actualizarProveedor(@PathVariable("_id") String id,
+            @RequestBody Proveedor proveedor) {
         try {
             proveedorRepository.actualizarProveedor(
                     id,

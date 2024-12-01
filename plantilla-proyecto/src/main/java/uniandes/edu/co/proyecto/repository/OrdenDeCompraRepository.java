@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.repository;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -15,7 +16,7 @@ public interface OrdenDeCompraRepository extends MongoRepository<OrdenDeCompra, 
 
     // Consultar orden de compra por id
     @Query("{_id: ?0}")
-    List<OrdenDeCompra> buscarPorId(int id);
+    List<OrdenDeCompra> buscarPorId(ObjectId id);
 
     default void insertarOrdenDeCompra(OrdenDeCompra ordenDeCompra) {
         save(ordenDeCompra);

@@ -5,7 +5,7 @@ db.proveedor.insertOne({
   nombre_contacto: "Juan Pérez",
   telefono_contacto: "3001234567",
   id_productos: [
-    ObjectId("CAMBIAR"), // Referencia a un _id de un producto
-    ObjectId("CAMBIAR"), // Otra referencia a un _id de un producto
+    ObjectId("613b23f7c2b6b0f1a4c3e938"), // Referencia a un _id de un producto
+    ObjectId("613b23f7c2b6b0f1a4c3e938"), // Otra referencia a un _id de un producto
   ],
 });

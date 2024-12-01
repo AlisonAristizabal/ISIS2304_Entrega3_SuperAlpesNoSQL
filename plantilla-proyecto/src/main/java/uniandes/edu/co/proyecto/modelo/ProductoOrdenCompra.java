@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 import lombok.ToString;
@@ -10,9 +11,9 @@ public class ProductoOrdenCompra {
     private String _id;
     private int cantidad;
     private int precio;
-    private String id_producto;
+    private ObjectId id_producto;
 
-    public ProductoOrdenCompra(String _id, int cantidad, int precio, String id_producto) {
+    public ProductoOrdenCompra(String _id, int cantidad, int precio, ObjectId id_producto) {
         this._id = _id;
         this.cantidad = cantidad;
         this.precio = precio;
@@ -43,11 +44,11 @@ public class ProductoOrdenCompra {
         this.precio = precio;
     }
 
-    public String getId_producto() {
+    public ObjectId getId_producto() {
         return id_producto;
     }
 
-    public void setId_producto(String id_producto) {
+    public void setId_producto(ObjectId id_producto) {
         this.id_producto = id_producto;
     }
 

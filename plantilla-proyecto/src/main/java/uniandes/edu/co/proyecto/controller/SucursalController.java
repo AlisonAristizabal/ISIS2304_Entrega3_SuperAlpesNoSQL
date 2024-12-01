@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import uniandes.edu.co.proyecto.modelo.Sucursal;
 import uniandes.edu.co.proyecto.repository.SucursalRepository;
@@ -28,10 +29,13 @@ public class SucursalController {
     @PostMapping("/new/save")
     public ResponseEntity<String> crearSucursal(@RequestBody Sucursal sucursal) {
         try {
+
             sucursalRepository.save(sucursal);
             return new ResponseEntity<>("Sucursal creada exitosamente", HttpStatus.CREATED);
-        } catch (Exception e) {;
-            return new ResponseEntity<>("Error al crear la sucursal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            ;
+            return new ResponseEntity<>("Error al crear la sucursal: " + e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -67,13 +71,14 @@ public class SucursalController {
         this.sucursalRepositoryCustom = sucursalRepositoryCustom;
     }
 
-    @GetMapping("/{id}/inventario")
-    public ResponseEntity<?> obtenerInventarioPorSucursal(@PathVariable String id) {
+    @GetMapping("/{_id}/inventario")
+    public ResponseEntity<?> obtenerInventarioPorSucursal(@PathVariable ObjectId _id) {
         try {
-            List<Document> inventario = sucursalRepositoryCustom.obtenerInventarioPorSucursal(id);
+            List<Document> inventario = sucursalRepositoryCustom.obtenerInventarioPorSucursal(_id);
             return ResponseEntity.ok(inventario);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al generar inventario: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al generar inventario: " + e.getMessage());
         }
     }
 }

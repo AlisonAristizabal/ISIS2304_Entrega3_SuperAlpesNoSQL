@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.modelo;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,14 +23,11 @@ public class Producto {
     private String unidad_medida;
     private String codigo_barras;
     private Date fecha_expiracion;
-    private String id_categoria;
-
-    public Producto() {
-    }
+    private ObjectId id_categoria;
 
     public Producto(String _id, String nombre, int costo_bodega, int precio_unidad, String presentacion,
             int cantidad_presentacion, double volumen, double peso_empaque, String unidad_medida, String codigo_barras,
-            Date fecha_expiracion, String id_categoria) {
+            Date fecha_expiracion, ObjectId id_categoria) {
         this._id = _id;
         this.nombre = nombre;
         this.costo_bodega = costo_bodega;
@@ -44,11 +42,11 @@ public class Producto {
         this.id_categoria = id_categoria;
     }
 
-    public String getId() {
+    public String get_id() {
         return _id;
     }
 
-    public void setId(String _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
@@ -132,12 +130,12 @@ public class Producto {
         this.fecha_expiracion = fecha_expiracion;
     }
 
-    public String getCodigo_categoria() {
+    public ObjectId getId_categoria() {
         return id_categoria;
     }
 
-    public void setCodigo_categoria(String codigo_categoria) {
-        this.id_categoria = codigo_categoria;
+    public void setId_categoria(ObjectId id_categoria) {
+        this.id_categoria = id_categoria;
     }
 
 }

@@ -1,30 +1,33 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 import lombok.ToString;
 
 @ToString
 public class ProductosEnBodega {
-    @Id
-    private String _id;
-    private String id_producto;
+
+    private ObjectId id_producto;
     private int cantidad;
     private double costoPromedio;
     private int minimoReorden;
 
-    public ProductosEnBodega(String id_producto, int cantidad, double costoPromedio, int minimoReorden) {
+    public ProductosEnBodega() {
+    }
+
+    public ProductosEnBodega(ObjectId id_producto, int cantidad, double costoPromedio, int minimoReorden) {
         this.id_producto = id_producto;
         this.cantidad = cantidad;
         this.costoPromedio = costoPromedio;
         this.minimoReorden = minimoReorden;
     }
 
-    public String getId_producto() {
+    public ObjectId getId_producto() {
         return id_producto;
     }
 
-    public void setId_producto(String id_producto) {
+    public void setId_producto(ObjectId id_producto) {
         this.id_producto = id_producto;
     }
 

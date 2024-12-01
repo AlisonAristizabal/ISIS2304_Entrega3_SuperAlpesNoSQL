@@ -2,6 +2,7 @@ package uniandes.edu.co.proyecto.modelo;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,10 +17,10 @@ public class Proveedor {
     private String direccion;
     private String nombre_contacto;
     private String telefono_contacto;
-    private List<String> id_productos;
+    private List<ObjectId> id_productos;
 
     public Proveedor(String _id, long nit, String direccion, String nombre_contacto, String telefono_contacto,
-            List<String> id_productos) {
+            List<ObjectId> id_productos) {
         this._id = _id;
         this.nit = nit;
         this.direccion = direccion;
@@ -68,11 +69,11 @@ public class Proveedor {
         this.telefono_contacto = telefono_contacto;
     }
 
-    public List<String> getId_productos() {
+    public List<ObjectId> getId_productos() {
         return id_productos;
     }
 
-    public void setId_productos(List<String> id_productos) {
+    public void setId_productos(List<ObjectId> id_productos) {
         this.id_productos = id_productos;
     }
 

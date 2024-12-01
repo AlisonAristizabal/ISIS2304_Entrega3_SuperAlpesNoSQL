@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.bson.Document;
@@ -20,13 +21,14 @@ import uniandes.edu.co.proyecto.repository.ProductoRepository;
 import uniandes.edu.co.proyecto.repository.ProductoRepositoryCustom;
 
 @RestController
+@RequestMapping("/productos")
 public class ProductoController {
 
     @Autowired
     private ProductoRepository productoRepository;
 
     // Crear un nuevo producto
-    @PostMapping
+    @PostMapping("/new/save")
     public ResponseEntity<?> crearProducto(@RequestBody Producto producto) {
         try {
             productoRepository.insertarProducto(producto);
@@ -70,7 +72,7 @@ public class ProductoController {
     }
 
     // Actualizar campos específicos de un producto
-    @PutMapping("/{id}")
+    @PutMapping("/{_id}")
     public ResponseEntity<?> actualizarCamposProducto(
             @PathVariable String _id,
             @RequestBody Producto productoActualizado) {
@@ -105,10 +107,12 @@ public class ProductoController {
             @RequestParam(required = false) String fechaVencimiento,
             @RequestParam(required = false) String idCategoria) {
         try {
-            List<Document> productos = productoRepositoryCustom.filtrarProductos(precioMin, precioMax, fechaVencimiento, idCategoria);
+            List<Document> productos = productoRepositoryCustom.filtrarProductos(precioMin, precioMax, fechaVencimiento,
+                    idCategoria);
             return ResponseEntity.ok(productos);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al filtrar productos: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al filtrar productos: " + e.getMessage());
         }
     }
 }
