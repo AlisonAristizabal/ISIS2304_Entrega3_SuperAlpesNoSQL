@@ -1,17 +1,30 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.ToString;
 
 @ToString
 public class ProductoOrdenCompra {
+    @Id
+    private String _id;
     private int cantidad;
     private int precio;
     private String id_producto;
 
-    public ProductoOrdenCompra(int cantidad, int precio, String id_producto) {
+    public ProductoOrdenCompra(String _id, int cantidad, int precio, String id_producto) {
+        this._id = _id;
         this.cantidad = cantidad;
         this.precio = precio;
         this.id_producto = id_producto;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public int getCantidad() {

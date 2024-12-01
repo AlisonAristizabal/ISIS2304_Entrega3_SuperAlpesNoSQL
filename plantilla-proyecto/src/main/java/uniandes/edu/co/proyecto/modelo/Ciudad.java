@@ -1,9 +1,12 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.ToString;
 
 @ToString
 public class Ciudad {
+    @Id
     private String id_ciudad;
     private String nombre;
 

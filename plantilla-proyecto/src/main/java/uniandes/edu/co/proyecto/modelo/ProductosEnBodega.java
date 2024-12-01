@@ -1,9 +1,13 @@
 package uniandes.edu.co.proyecto.modelo;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.ToString;
 
 @ToString
 public class ProductosEnBodega {
+    @Id
+    private String _id;
     private String id_producto;
     private int cantidad;
     private double costoPromedio;
