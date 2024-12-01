@@ -12,26 +12,26 @@ import lombok.ToString;
 public class Bodega {
     @Id
     private String _id;
-    private int id;
     private String nombre;
     private double tamanio;
-    private int id_sucursal;
+    private String id_sucursal;
     private List<ProductosEnBodega> productos_en_bodega;
 
-    public Bodega(int id, String nombre, double tamanio, int id_sucursal, List<ProductosEnBodega> productosEnBodega) {
-        this.id = id;
+    public Bodega(String _id, String nombre, double tamanio, String id_sucursal,
+            List<ProductosEnBodega> productosEnBodega) {
+        this._id = _id;
         this.nombre = nombre;
         this.tamanio = tamanio;
         this.id_sucursal = id_sucursal;
         this.productos_en_bodega = productosEnBodega;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return this._id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
     }
 
     public String getNombre() {
@@ -50,11 +50,11 @@ public class Bodega {
         this.tamanio = tamanio;
     }
 
-    public int getId_sucursal() {
+    public String getId_sucursal() {
         return id_sucursal;
     }
 
-    public void setId_sucursal(int id_sucursal) {
+    public void setId_sucursal(String id_sucursal) {
         this.id_sucursal = id_sucursal;
     }
 

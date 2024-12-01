@@ -43,11 +43,11 @@ public class CategoriaController {
     // Obtener una categoría por ID o nombre
     @GetMapping("/buscar")
     public ResponseEntity<?> obtenerCategoria(
-            @RequestParam(value = "id", required = false) Integer id,
+            @RequestParam(value = "_id", required = false) String _id,
             @RequestParam(value = "nombre", required = false) String nombre) {
         try {
-            if (id != null) {
-                return categoriaRepository.findById(id)
+            if (_id != null) {
+                return categoriaRepository.findById(_id)
                         .map(ResponseEntity::ok)
                         .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
             } else if (nombre != null) {

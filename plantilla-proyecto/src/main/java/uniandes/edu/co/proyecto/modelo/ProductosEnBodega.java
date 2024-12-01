@@ -4,23 +4,23 @@ import lombok.ToString;
 
 @ToString
 public class ProductosEnBodega {
-    private int id_producto;
+    private String id_producto;
     private int cantidad;
     private double costoPromedio;
     private int minimoReorden;
 
-    public ProductosEnBodega(int id_producto, int cantidad, double costoPromedio, int minimoReorden) {
+    public ProductosEnBodega(String id_producto, int cantidad, double costoPromedio, int minimoReorden) {
         this.id_producto = id_producto;
         this.cantidad = cantidad;
         this.costoPromedio = costoPromedio;
         this.minimoReorden = minimoReorden;
     }
 
-    public int getId_producto() {
+    public String getId_producto() {
         return id_producto;
     }
 
-    public void setId_producto(int id_producto) {
+    public void setId_producto(String id_producto) {
         this.id_producto = id_producto;
     }
 

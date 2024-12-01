@@ -11,7 +11,6 @@ public class Categoria {
 
     @Id
     private String _id;
-    private int id;
     private int codigo;
     private String nombre;
     private String descripcion;
@@ -20,8 +19,8 @@ public class Categoria {
     public Categoria() {
     }
 
-    public Categoria(int id, int codigo, String nombre, String descripcion, String caracteristica_almacenamiento) {
-        this.id = id;
+    public Categoria(String _id, int codigo, String nombre, String descripcion, String caracteristica_almacenamiento) {
+        this._id = _id;
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -60,12 +59,12 @@ public class Categoria {
         this.caracteristica_almacenamiento = caracteristica_almacenamiento;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
     }
 
 }

@@ -7,9 +7,9 @@ import org.springframework.data.mongodb.repository.Query;
 
 import uniandes.edu.co.proyecto.modelo.Sucursal;
 
-public interface SucursalRepository extends MongoRepository<Sucursal,Integer>{
+public interface SucursalRepository extends MongoRepository<Sucursal, String> {
 
-    // Consultar todos las sucursales 
+    // Consultar todos las sucursales
     @Query(value = "{}")
     List<Sucursal> buscarTodasLasSucursales();
 
@@ -17,8 +17,8 @@ public interface SucursalRepository extends MongoRepository<Sucursal,Integer>{
     @Query("{_id: ?0}")
     List<Sucursal> buscarPorId(int id);
 
-    ///Crear sucursal
-    default void insertarSucursal(Sucursal sucursal){
+    /// Crear sucursal
+    default void insertarSucursal(Sucursal sucursal) {
         save(sucursal);
     }
 }

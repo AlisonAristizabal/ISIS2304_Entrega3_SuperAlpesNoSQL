@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import uniandes.edu.co.proyecto.modelo.OrdenDeCompra;
 
-public interface OrdenDeCompraRepository extends MongoRepository<OrdenDeCompra, Integer> {
+public interface OrdenDeCompraRepository extends MongoRepository<OrdenDeCompra, String> {
 
     // Consultar todas las ordenes de compra
     @Query(value = "{}")

@@ -28,8 +28,10 @@ public class ProveedorController {
         try {
             proveedorRepository.save(proveedor);
             return new ResponseEntity<>("Proveedor creado exitosamente", HttpStatus.CREATED);
-        } catch (Exception e) {;
-            return new ResponseEntity<>("Error al crear el proveedor: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            ;
+            return new ResponseEntity<>("Error al crear el proveedor: " + e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -61,19 +63,20 @@ public class ProveedorController {
 
     // Actualizar un proveedor existente
     @PostMapping("/{id}/edit/save")
-    public ResponseEntity<String> actualizarProveedor(@PathVariable("id") int id, @RequestBody Proveedor proveedor) {
+    public ResponseEntity<String> actualizarProveedor(@PathVariable("id") String id, @RequestBody Proveedor proveedor) {
         try {
             proveedorRepository.actualizarProveedor(
-                id, 
-                proveedor.getNIT(), 
-                proveedor.getDireccion(), 
-                proveedor.getNombre_contacto(), 
-                proveedor.getTelefono_contacto(), 
-                proveedor.getId_productos());
-            
+                    id,
+                    proveedor.getNIT(),
+                    proveedor.getDireccion(),
+                    proveedor.getNombre_contacto(),
+                    proveedor.getTelefono_contacto(),
+                    proveedor.getId_productos());
+
             return new ResponseEntity<>("Proveedor actualizado exitosamente", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al actualizar el bar: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error al actualizar el bar: " + e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

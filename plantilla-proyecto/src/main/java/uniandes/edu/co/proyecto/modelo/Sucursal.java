@@ -10,26 +10,25 @@ import lombok.ToString;
 public class Sucursal {
     @Id
     private String _id;
-    private int id;
     private String nombre;
     private String telefono;
     private String direccion;
     private Ciudad ciudad;
 
-    public Sucursal(int id, String nombre, String telefono, String direccion, Ciudad ciudad) {
-        this.id = id;
+    public Sucursal(String _id, String nombre, String telefono, String direccion, Ciudad ciudad) {
+        this._id = _id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
         this.ciudad = ciudad;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
     }
 
     public String getNombre() {

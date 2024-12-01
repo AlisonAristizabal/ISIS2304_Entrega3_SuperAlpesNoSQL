@@ -4,19 +4,19 @@ import lombok.ToString;
 
 @ToString
 public class Ciudad {
-    private int id_ciudad;
+    private String id_ciudad;
     private String nombre;
 
-    public Ciudad(int id_ciudad, String nombre) {
+    public Ciudad(String id_ciudad, String nombre) {
         this.id_ciudad = id_ciudad;
         this.nombre = nombre;
     }
 
-    public int getId_ciudad() {
+    public String getId_ciudad() {
         return id_ciudad;
     }
 
-    public void setId_ciudad(int id_ciudad) {
+    public void setId_ciudad(String id_ciudad) {
         this.id_ciudad = id_ciudad;
     }
 

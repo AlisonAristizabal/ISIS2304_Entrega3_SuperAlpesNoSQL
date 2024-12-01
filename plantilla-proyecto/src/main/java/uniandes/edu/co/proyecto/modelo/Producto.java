@@ -12,7 +12,6 @@ import lombok.ToString;
 public class Producto {
     @Id
     private String _id;
-    private int id;
     private String nombre;
     private int costo_bodega;
     private int precio_unidad;
@@ -23,15 +22,15 @@ public class Producto {
     private String unidad_medida;
     private String codigo_barras;
     private Date fecha_expiracion;
-    private int id_categoria;
+    private String id_categoria;
 
     public Producto() {
     }
 
-    public Producto(int id, String nombre, int costo_bodega, int precio_unidad, String presentacion,
+    public Producto(String _id, String nombre, int costo_bodega, int precio_unidad, String presentacion,
             int cantidad_presentacion, double volumen, double peso_empaque, String unidad_medida, String codigo_barras,
-            Date fecha_expiracion, int id_categoria) {
-        this.id = id;
+            Date fecha_expiracion, String id_categoria) {
+        this._id = _id;
         this.nombre = nombre;
         this.costo_bodega = costo_bodega;
         this.precio_unidad = precio_unidad;
@@ -45,12 +44,12 @@ public class Producto {
         this.id_categoria = id_categoria;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String _id) {
+        this._id = _id;
     }
 
     public String getNombre() {
@@ -133,11 +132,11 @@ public class Producto {
         this.fecha_expiracion = fecha_expiracion;
     }
 
-    public int getCodigo_categoria() {
+    public String getCodigo_categoria() {
         return id_categoria;
     }
 
-    public void setCodigo_categoria(int codigo_categoria) {
+    public void setCodigo_categoria(String codigo_categoria) {
         this.id_categoria = codigo_categoria;
     }
 

@@ -6,9 +6,9 @@ import lombok.ToString;
 public class ProductoOrdenCompra {
     private int cantidad;
     private int precio;
-    private int id_producto;
+    private String id_producto;
 
-    public ProductoOrdenCompra(int cantidad, int precio, int id_producto) {
+    public ProductoOrdenCompra(int cantidad, int precio, String id_producto) {
         this.cantidad = cantidad;
         this.precio = precio;
         this.id_producto = id_producto;
@@ -30,11 +30,11 @@ public class ProductoOrdenCompra {
         this.precio = precio;
     }
 
-    public int getId_producto() {
+    public String getId_producto() {
         return id_producto;
     }
 
-    public void setId_producto(int id_producto) {
+    public void setId_producto(String id_producto) {
         this.id_producto = id_producto;
     }
 

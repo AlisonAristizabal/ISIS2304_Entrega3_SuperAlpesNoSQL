@@ -7,9 +7,9 @@ import org.springframework.data.mongodb.repository.Query;
 
 import uniandes.edu.co.proyecto.modelo.Bodega;
 
-public interface BodegaRepository extends MongoRepository<Bodega,Integer>{
+public interface BodegaRepository extends MongoRepository<Bodega, String> {
 
-    // Consultar todos las bodegas 
+    // Consultar todos las bodegas
     @Query(value = "{}")
     List<Bodega> buscarTodasLasBodegas();
 
@@ -17,8 +17,8 @@ public interface BodegaRepository extends MongoRepository<Bodega,Integer>{
     @Query("{_id: ?0}")
     List<Bodega> buscarPorId(int id);
 
-    //Crear Bodega
-    default void insertarBodega(Bodega bodega){
+    // Crear Bodega
+    default void insertarBodega(Bodega bodega) {
         save(bodega);
     }
 
