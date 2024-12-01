@@ -30,7 +30,7 @@ public class CategoriaController {
     }
 
     // Obtener todas las categorías
-    @GetMapping
+    @GetMapping ("")
     public ResponseEntity<List<Categoria>> obtenerTodasLasCategorias() {
         try {
             List<Categoria> categorias = categoriaRepository.findAll();
