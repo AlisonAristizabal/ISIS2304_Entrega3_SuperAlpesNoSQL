@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.bson.Document;
 
 import uniandes.edu.co.proyecto.modelo.Sucursal;
 import uniandes.edu.co.proyecto.repository.SucursalRepository;
+import uniandes.edu.co.proyecto.repository.SucursalRepositoryCustom;
 
 @RestController
 @RequestMapping("/sucursales")
@@ -56,6 +58,22 @@ public class SucursalController {
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    private final SucursalRepositoryCustom sucursalRepositoryCustom;
+
+    public SucursalController(SucursalRepositoryCustom sucursalRepositoryCustom) {
+        this.sucursalRepositoryCustom = sucursalRepositoryCustom;
+    }
+
+    @GetMapping("/{id}/inventario")
+    public ResponseEntity<?> obtenerInventarioPorSucursal(@PathVariable String id) {
+        try {
+            List<Document> inventario = sucursalRepositoryCustom.obtenerInventarioPorSucursal(id);
+            return ResponseEntity.ok(inventario);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al generar inventario: " + e.getMessage());
         }
     }
 }

@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.bson.Document;
 
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.repository.ProductoRepository;
+import uniandes.edu.co.proyecto.repository.ProductoRepositoryCustom;
 
 @RestController
 public class ProductoController {
@@ -85,6 +89,26 @@ public class ProductoController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error al actualizar el producto: " + e.getMessage());
+        }
+    }
+
+    private final ProductoRepositoryCustom productoRepositoryCustom;
+
+    public ProductoController(ProductoRepositoryCustom productoRepositoryCustom) {
+        this.productoRepositoryCustom = productoRepositoryCustom;
+    }
+
+    @GetMapping("/filtrar")
+    public ResponseEntity<?> filtrarProductos(
+            @RequestParam(required = false) Integer precioMin,
+            @RequestParam(required = false) Integer precioMax,
+            @RequestParam(required = false) String fechaVencimiento,
+            @RequestParam(required = false) String idCategoria) {
+        try {
+            List<Document> productos = productoRepositoryCustom.filtrarProductos(precioMin, precioMax, fechaVencimiento, idCategoria);
+            return ResponseEntity.ok(productos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al filtrar productos: " + e.getMessage());
         }
     }
 }
