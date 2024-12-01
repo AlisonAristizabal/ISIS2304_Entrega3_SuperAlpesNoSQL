@@ -10,6 +10,7 @@ import lombok.ToString;
 public class Categoria {
 
     @Id
+    private String _id;
     private int id;
     private int codigo;
     private String nombre;

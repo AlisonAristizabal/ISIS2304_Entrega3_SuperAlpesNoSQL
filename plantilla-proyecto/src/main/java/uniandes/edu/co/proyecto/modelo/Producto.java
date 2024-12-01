@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class Producto {
     @Id
+    private String _id;
     private int id;
     private String nombre;
     private int costo_bodega;

@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class Sucursal {
     @Id
+    private String _id;
     private int id;
     private String nombre;
     private String telefono;

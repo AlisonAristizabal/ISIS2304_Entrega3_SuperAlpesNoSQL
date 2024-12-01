@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class Bodega {
     @Id
+    private String _id;
     private int id;
     private String nombre;
     private double tamanio;
