@@ -13,22 +13,24 @@ public interface ProductoRepository extends MongoRepository<Producto, Integer>{
     default void insertarProducto(Producto producto){
         save(producto);
     }
-
-    // Consultar producto por su ID
+    
     @Aggregation(pipeline = {
-    "{ $lookup: { from: 'categoria', localField: 'codigo_categoria', foreignField: '_id', as: 'categoriaInfo' } }",
-    "{ $match: { _id: ?0 } }"})
+        "{ $lookup: { from: 'categoria', localField: 'id_categoria', foreignField: '_id', as: 'categoriaInfo' } }",
+        "{ $match: { _id: ?0 } }",
+        "{ $project: { id: 1, nombre: 1, costo_bodega: 1, precio_unidad: 1, categoriaInfo: 1 } }"
+    })
     Producto findProductoConCategoriaById(int id);
-
-    // Consultar producto por su nombre
+    
     @Aggregation(pipeline = {
-        "{ $lookup: { from: 'categoria', localField: 'codigo_categoria', foreignField: '_id', as: 'categoriaInfo' } }",
-        "{ $match: { nombre: ?0 } }"
+        "{ $lookup: { from: 'categoria', localField: 'id_categoria', foreignField: '_id', as: 'categoriaInfo' } }",
+        "{ $match: { nombre: ?0 } }",
+        "{ $project: { id: 1, nombre: 1, costo_bodega: 1, precio_unidad: 1, categoriaInfo: 1 } }"
     })
     Producto findProductoConCategoriaByNombre(String nombre);
     
     @Query( "{ '_id': ?0 }")
     @Update ("{ $set: { 'nombre': ?1, 'costo_bodega': ?2, 'precio_unidad': ?3 } }")
     void actualizarCamposProducto(int id, String nombre, int costoBodega, int precioUnidad);
+
 
 }
