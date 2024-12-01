@@ -18,7 +18,7 @@ public class CategoriaController {
     private CategoriaRepository categoriaRepository;
 
     // Crear una nueva categoría
-    @PostMapping
+    @PostMapping("/new/save")
     public ResponseEntity<String> crearCategoria(@RequestBody Categoria categoria) {
         try {
             categoriaRepository.save(categoria);
